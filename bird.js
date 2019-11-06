@@ -14,6 +14,8 @@ var bird = function(game){
     this.speedY = 0;
     this.acceleration = 1.5;
 
+    this.score = 0;
+
     this.direction = 'down';
 
     self = this;
@@ -80,6 +82,20 @@ var bird = function(game){
 
         //check collision
         this.checkHitPipe();
+
+        //check score
+        this.getScore();
+    }
+
+    // &&
+    //         this.x + 10 < this.game.pipe.x
+    this.getScore = function(){
+        // console.log(this.score);
+        if(this.x > this.game.pipe.x ){
+            this.score++;
+            console.log("score at this moment: " + this.score);
+        }
+        this.score = 0;
     }
 
     this.checkHitPipe = function(){
@@ -87,7 +103,7 @@ var bird = function(game){
             (
                 this.x + 34 > this.game.pipe.x &&
                 this.x < this.game.pipe.x + 52
-             ) &&
+            ) &&
             (
                 (this.y < this.game.pipe.y - 150) || 
                 (this.y + 24 > this.game.pipe.y)
@@ -97,7 +113,7 @@ var bird = function(game){
 
         }
     };
-   
+
     this.flap = function(){
         if(this.game.gameOver){
             return;

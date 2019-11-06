@@ -9,6 +9,8 @@ var game = function(){
     this.base = null;
     this.pipe = null;
 
+    this.score = 0;
+
     //game status
     this.gameOver = false;
     
@@ -40,6 +42,7 @@ var game = function(){
         this.listenMouse();
 
         this.loop();
+        this.bird.getScore();
     }
     this.listenMouse = function(){
 
@@ -54,6 +57,7 @@ var game = function(){
         self.draw();
 
         setTimeout(self.loop, 33);
+        // console.log();
     }
     this.update = function(){
         this.bird.update();
